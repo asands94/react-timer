@@ -33,9 +33,32 @@ const Timer = () => {
     setIsRunning(!isRunning)
   }
 
-  const timerAmount = (e, time) => {
+  const timerAmount = (time) => {
     setSeconds(time)
     setIsRunning(false)
+  }
+
+  const buttonPressed = (e) => {
+    const button = e.target.innerText
+    switch (button) {
+      case 'Focus':
+        setIsFocusedPressed(true)
+        setIsShortPressed(false)
+        setIsLongPressed(false)
+        break
+      case 'Short Break':
+        setIsFocusedPressed(false)
+        setIsShortPressed(true)
+        setIsLongPressed(false)
+        break
+      case 'Long Break':
+        setIsFocusedPressed(false)
+        setIsShortPressed(false)
+        setIsLongPressed(true)
+        break
+      default:
+        console.log('default')
+    }
   }
 
   return (
@@ -43,8 +66,8 @@ const Timer = () => {
       <button
         className={isFocusedPressed ? 'active-button' : 'inactive-button'}
         onClick={(e) => {
-          timerAmount(e, 1200)
-          setIsFocusedPressed(!isFocusedPressed)
+          timerAmount(1200)
+          buttonPressed(e)
         }}
       >
         Focus
@@ -52,8 +75,8 @@ const Timer = () => {
       <button
         className={isShortPressed ? 'active-button' : 'inactive-button'}
         onClick={(e) => {
-          timerAmount(e, 300)
-          setIsShortPressed(!isShortPressed)
+          timerAmount(300)
+          buttonPressed(e)
         }}
       >
         Short Break
@@ -61,8 +84,8 @@ const Timer = () => {
       <button
         className={isLongPressed ? 'active-button' : 'inactive-button'}
         onClick={(e) => {
-          timerAmount(e, 600)
-          setIsLongPressed(!isLongPressed)
+          timerAmount(600)
+          buttonPressed(e)
         }}
       >
         Long Break

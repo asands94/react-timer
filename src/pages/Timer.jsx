@@ -4,7 +4,9 @@ import './timer.css'
 const Timer = () => {
   const [seconds, setSeconds] = useState(1200)
   const [isRunning, setIsRunning] = useState(false)
-  const [isPressed, setIsPressed] = useState(true)
+  const [isFocusedPressed, setIsFocusedPressed] = useState(true)
+  const [isShortPressed, setIsShortPressed] = useState(false)
+  const [isLongPressed, setIsLongPressed] = useState(false)
 
   useEffect(() => {
     if (!isRunning || seconds <= 0) {
@@ -38,9 +40,33 @@ const Timer = () => {
 
   return (
     <>
-      <button onClick={(e) => timerAmount(e, 1200)}>Focus</button>
-      <button onClick={(e) => timerAmount(e, 300)}>Short Break</button>
-      <button onClick={(e) => timerAmount(e, 600)}>Long Break</button>
+      <button
+        className={isFocusedPressed ? 'active-button' : 'inactive-button'}
+        onClick={(e) => {
+          timerAmount(e, 1200)
+          setIsFocusedPressed(!isFocusedPressed)
+        }}
+      >
+        Focus
+      </button>
+      <button
+        className={isShortPressed ? 'active-button' : 'inactive-button'}
+        onClick={(e) => {
+          timerAmount(e, 300)
+          setIsShortPressed(!isShortPressed)
+        }}
+      >
+        Short Break
+      </button>
+      <button
+        className={isLongPressed ? 'active-button' : 'inactive-button'}
+        onClick={(e) => {
+          timerAmount(e, 600)
+          setIsLongPressed(!isLongPressed)
+        }}
+      >
+        Long Break
+      </button>
       <div>{formatTime(seconds)}</div>
       <button onClick={handleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
     </>

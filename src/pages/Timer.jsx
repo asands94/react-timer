@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import './timer.css'
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(1200)
   const [isRunning, setIsRunning] = useState(false)
+  const [isPressed, setIsPressed] = useState(true)
 
   useEffect(() => {
     if (!isRunning || seconds <= 0) {
@@ -29,15 +31,16 @@ const Timer = () => {
     setIsRunning(!isRunning)
   }
 
-  const timerAmount = (time) => {
+  const timerAmount = (e, time) => {
     setSeconds(time)
+    setIsRunning(false)
   }
 
   return (
     <>
-      <button onClick={() => timerAmount(1200)}>Focus</button>
-      <button onClick={() => timerAmount(300)}>Short Break</button>
-      <button onClick={() => timerAmount(600)}>Long Break</button>
+      <button onClick={(e) => timerAmount(e, 1200)}>Focus</button>
+      <button onClick={(e) => timerAmount(e, 300)}>Short Break</button>
+      <button onClick={(e) => timerAmount(e, 600)}>Long Break</button>
       <div>{formatTime(seconds)}</div>
       <button onClick={handleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
     </>

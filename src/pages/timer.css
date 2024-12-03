@@ -1,0 +1,17 @@
+.active-button {
+  background-color: rgb(110, 61, 142);
+  border: rgb(110, 61, 142) 2px solid;
+  color: white;
+  padding: 1em;
+  border-radius: 2em;
+  margin-left: 10px;
+}
+
+.inactive-button {
+  background-color: transparent;
+  border: white 2px solid;
+  color: white;
+  padding: 1em;
+  border-radius: 2em;
+  margin-left: 10px;
+}

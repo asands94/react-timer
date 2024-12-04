@@ -1,20 +1,27 @@
 import { useState, useEffect } from 'react'
 import './timer.css'
 
-const Timer = () => {
-  const [seconds, setSeconds] = useState(1200)
-  const [isRunning, setIsRunning] = useState(false)
+const Timer = ({
+  focus,
+  setFocus,
+  short,
+  long,
+  focusTime,
+  setIsRunning,
+  isRunning,
+}) => {
+  const [timing, setTiming] = useState(focusTime)
   const [isFocusedPressed, setIsFocusedPressed] = useState(true)
   const [isShortPressed, setIsShortPressed] = useState(false)
   const [isLongPressed, setIsLongPressed] = useState(false)
 
   useEffect(() => {
-    if (!isRunning || seconds <= 0) {
+    if (!isRunning || timing <= 0) {
       return
     }
 
     const timer = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1)
+      setTiming((prevFocus) => prevFocus - 1)
     }, 1000)
 
     return () => clearInterval(timer)
@@ -33,25 +40,26 @@ const Timer = () => {
     setIsRunning(!isRunning)
   }
 
-  const timerAmount = (time) => {
-    setSeconds(time)
-    setIsRunning(false)
-  }
-
   const buttonPressed = (e) => {
     const button = e.target.innerText
     switch (button) {
       case 'Focus':
+        setTiming(focus)
+        setIsRunning(false)
         setIsFocusedPressed(true)
         setIsShortPressed(false)
         setIsLongPressed(false)
         break
       case 'Short Break':
+        setTiming(short)
+        setIsRunning(false)
         setIsFocusedPressed(false)
         setIsShortPressed(true)
         setIsLongPressed(false)
         break
       case 'Long Break':
+        setTiming(long)
+        setIsRunning(false)
         setIsFocusedPressed(false)
         setIsShortPressed(false)
         setIsLongPressed(true)
@@ -68,7 +76,7 @@ const Timer = () => {
           <button
             className={isFocusedPressed ? 'active-button' : 'inactive-button'}
             onClick={(e) => {
-              timerAmount(1200)
+              // timerAmount(focus)
               buttonPressed(e)
             }}
           >
@@ -77,7 +85,7 @@ const Timer = () => {
           <button
             className={isShortPressed ? 'active-button' : 'inactive-button'}
             onClick={(e) => {
-              timerAmount(300)
+              // timerAmount(300)
               buttonPressed(e)
             }}
           >
@@ -86,14 +94,14 @@ const Timer = () => {
           <button
             className={isLongPressed ? 'active-button' : 'inactive-button'}
             onClick={(e) => {
-              timerAmount(600)
+              // timerAmount(600)
               buttonPressed(e)
             }}
           >
             Long Break
           </button>
         </div>
-        <p className='timer'>{formatTime(seconds)}</p>
+        <p className='timer'>{formatTime(timing)}</p>
         <button className='timer-button' onClick={handleTimer}>
           {isRunning ? 'Pause' : 'Start'}
         </button>

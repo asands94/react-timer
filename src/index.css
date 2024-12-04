@@ -1,8 +1,22 @@
-body {
+body,
+html {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgb(170, 127, 162);
-  height: 100vh;
+  height: 100%;
+  margin: 0;
+}
+
+.settings-icon {
+  background-color: rgb(79, 44, 103);
+  border-radius: 0.5em;
+  color: white;
+  padding: 0.5em;
+}
+
+.settings-icon:hover {
+  cursor: pointer;
+  background-color: rgb(110, 61, 142);
 }

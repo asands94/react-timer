@@ -1,5 +1,6 @@
 export const Settings = ({ setFocus, focusTime }) => {
   const timeInMinutes = focusTime / 60
+
   const test = (userTimeInMinutes) => {
     console.log('clicked')
     const timeInSeconds = userTimeInMinutes * 60

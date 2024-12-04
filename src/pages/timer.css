@@ -1,17 +1,50 @@
-.active-button {
+.timer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.active-button,
+.inactive-button,
+.timer-button {
   background-color: rgb(110, 61, 142);
   border: rgb(110, 61, 142) 2px solid;
   color: white;
   padding: 1em;
-  border-radius: 2em;
+  border-radius: 1em;
   margin-left: 10px;
+  font-size: larger;
 }
 
 .inactive-button {
   background-color: transparent;
   border: white 2px solid;
-  color: white;
   padding: 1em;
-  border-radius: 2em;
-  margin-left: 10px;
+}
+
+.inactive-button:hover,
+.active-button:hover,
+.timer-button:hover {
+  cursor: pointer;
+  background-color: rgb(110, 61, 142);
+  border-color: rgb(110, 61, 142);
+}
+
+.timer-button:hover {
+  cursor: pointer;
+  background-color: rgb(79, 44, 103);
+  border-color: rgb(79, 44, 103);
+}
+
+.timer-button:active {
+  background-color: transparent;
+  border: white 2px solid;
+  padding: 1em;
+}
+
+.timer {
+  align-self: center;
+  color: white;
+  font-size: 10em;
+  margin: 0;
+  font-weight: bold;
 }

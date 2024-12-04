@@ -63,35 +63,41 @@ const Timer = () => {
 
   return (
     <>
-      <button
-        className={isFocusedPressed ? 'active-button' : 'inactive-button'}
-        onClick={(e) => {
-          timerAmount(1200)
-          buttonPressed(e)
-        }}
-      >
-        Focus
-      </button>
-      <button
-        className={isShortPressed ? 'active-button' : 'inactive-button'}
-        onClick={(e) => {
-          timerAmount(300)
-          buttonPressed(e)
-        }}
-      >
-        Short Break
-      </button>
-      <button
-        className={isLongPressed ? 'active-button' : 'inactive-button'}
-        onClick={(e) => {
-          timerAmount(600)
-          buttonPressed(e)
-        }}
-      >
-        Long Break
-      </button>
-      <div>{formatTime(seconds)}</div>
-      <button onClick={handleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
+      <section className='timer-container'>
+        <div>
+          <button
+            className={isFocusedPressed ? 'active-button' : 'inactive-button'}
+            onClick={(e) => {
+              timerAmount(1200)
+              buttonPressed(e)
+            }}
+          >
+            Focus
+          </button>
+          <button
+            className={isShortPressed ? 'active-button' : 'inactive-button'}
+            onClick={(e) => {
+              timerAmount(300)
+              buttonPressed(e)
+            }}
+          >
+            Short Break
+          </button>
+          <button
+            className={isLongPressed ? 'active-button' : 'inactive-button'}
+            onClick={(e) => {
+              timerAmount(600)
+              buttonPressed(e)
+            }}
+          >
+            Long Break
+          </button>
+        </div>
+        <p className='timer'>{formatTime(seconds)}</p>
+        <button className='timer-button' onClick={handleTimer}>
+          {isRunning ? 'Pause' : 'Start'}
+        </button>
+      </section>
     </>
   )
 }
